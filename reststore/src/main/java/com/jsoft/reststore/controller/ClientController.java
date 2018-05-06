@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(path = "/clients")
+@RequestMapping(path = "/client")
 public class ClientController {
 
     /**
@@ -35,14 +36,14 @@ public class ClientController {
     public ResponseEntity<ClientResponse> queryAll() {
         ClientResponse apiResponse = new ClientResponse();
         ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.OK);
+                HttpStatus.FOUND);
 
-        logger.info("Query all Clients");
+        logger.debug("Query all Clients");
 
         List<Client> list = clientService.findAll();
 
         if (!list.isEmpty()) {
-            apiResponse.setClients(list.stream()
+            apiResponse.setClientList(list.stream()
                     .map(ClientConverter::webToDomain)
                     .collect(Collectors.toList()));
         }
@@ -58,6 +59,16 @@ public class ClientController {
 
         Client createdClient = clientService.save(ClientConverter.domainToWeb(client));
         apiResponse.setClient(ClientConverter.webToDomain(createdClient));
+
+        return httpResponse;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ClientResponse> deleteClient(@PathVariable("id") Long id) {
+        ClientResponse apiResponse = new ClientResponse();
+        ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.OK);
+
+        clientService.deleteById(id);
 
         return httpResponse;
     }
