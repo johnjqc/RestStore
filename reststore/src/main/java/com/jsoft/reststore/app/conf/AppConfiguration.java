@@ -1,8 +1,3 @@
-/**
- * PayU Latam - Copyright (c) 2013 - 2017
- * http://www.payu.com.co
- * Date: 06/12/2017
- */
 package com.jsoft.reststore.app.conf;
 
 import java.util.Properties;
@@ -23,15 +18,14 @@ import com.zaxxer.hikari.HikariDataSource;
 /**
  * Application configuration.
  *
- * @author <a href="carlos.ruiz@beitech.co">Carlos Fernando Ruiz Nieto</a>
- * @version 0.0.1
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
  * @since 0.0.1
  */
-@PropertySource(value = "file:${POL_HOME}/bureau-api/conf/bureau-api.properties")
+@PropertySource(value = "classpath:store.properties")
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.payulatam.bureau.api" })
-@EnableJpaRepositories(basePackages = { "com.payulatam.bureau.api.repositories.jpa" })						
-@EntityScan(basePackages = { "com.payulatam.bureau.api.model" })
+@ComponentScan(basePackages = { "com.jsoft.reststore" })
+@EnableJpaRepositories(basePackages = { "com.jsoft.reststore.repositories.jpa" })
+@EntityScan(basePackages = { "com.jsoft.reststore.model" })
 @Configuration
 public class AppConfiguration {
 

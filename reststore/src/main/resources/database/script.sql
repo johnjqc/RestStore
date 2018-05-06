@@ -1,45 +1,45 @@
-CREATE TABLE cliente (
-	cliente_id varchar(36) not null,
-	nombre varchar(255) not null,
-	edad int4 not null,
-	documento numeric(10,0) default 0 not null,
-	correo varchar(255) not null,
-	usuario varchar(255) not null,
-	contraseña varchar(255) not null,
-	PRIMARY KEY (cliente_id),
-	UNIQUE (correo),
-	UNIQUE (documento)
+CREATE TABLE client (
+	client_id varchar(36) NOT NULL,
+	client_name varchar(255) NOT NULL,
+	age int4 NOT NULL,
+	document numeric(10) NOT NULL DEFAULT 0,
+	email varchar(255) NOT NULL,
+	client_user varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
+	UNIQUE (document),
+	UNIQUE (email),
+	PRIMARY KEY (client_id)
 );
 
-CREATE TABLE producto (
-	producto_id varchar(36) not null,
-	nombre varchar(255) not null,
-	descripcion text not null,
-	precio numeric(19,2) default 0 not null,
-	codigo_barras text default 0 not null,
-	PRIMARY KEY (producto_id)
+CREATE TABLE product (
+	product_id varchar(36) NOT NULL,
+	product_name varchar(255) NOT NULL,
+	description text NOT NULL,
+	cost numeric(19,2) NOT NULL DEFAULT 0,
+	barcode text NOT NULL DEFAULT 0,
+	PRIMARY KEY (product_id)
 );
 
-CREATE TABLE tienda (
-	tienda_id varchar(36) not null,
-	nombre varchar(255) not null,
-	horario varchar(50) not null,
-	direccion varchar(255) not null,
-	PRIMARY KEY (tienda_id)
+CREATE TABLE shop (
+	shop_id varchar(36) NOT NULL,
+	shop_name varchar(255) NOT NULL,
+	schedule varchar(50) NOT NULL,
+	address varchar(255) NOT NULL,
+	PRIMARY KEY (shop_id)
 );
 
-CREATE TABLE inventario (
-	inevntario_id varchar(36) not null default nextval('inventario_seq'),
-	tienda_id varchar(36) not null,
-	producto_id varchar(36) not null,
-	existencia varchar(255) not null,
+CREATE TABLE inventory (
+	inevntario_id varchar(36) NOT NULL DEFAULT nextval('inventory_seq'::regclass),
+	shop_id varchar(36) NOT NULL,
+	product_id varchar(36) NOT NULL,
+	existencia varchar(255) NOT NULL,
 	PRIMARY KEY (inevntario_id),
-	FOREIGN KEY (tienda_id) REFERENCES tienda(tienda_id) ON DELETE cascade,
-	FOREIGN KEY (producto_id) REFERENCES producto(producto_id) ON DELETE cascade
+	FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE,
+	FOREIGN KEY (shop_id) REFERENCES shop(shop_id) ON DELETE CASCADE
 );
 
-CREATE SEQUENCE cliente_seq;
-CREATE SEQUENCE producto_seq;
-CREATE SEQUENCE tienda_seq;
-CREATE SEQUENCE inventario_seq;
+CREATE SEQUENCE client_seq;
+CREATE SEQUENCE product_seq;
+CREATE SEQUENCE shop_seq;
+CREATE SEQUENCE inventory_seq;
 
