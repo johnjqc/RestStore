@@ -8,7 +8,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
+/**
+ * This class represents a Client.
+ *
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ * @since 0.0.1
+ */
 @Entity
 @EqualsAndHashCode
 @GenericGenerator(name = "client_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",

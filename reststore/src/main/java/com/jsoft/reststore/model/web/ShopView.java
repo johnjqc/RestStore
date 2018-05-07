@@ -11,7 +11,7 @@ public class ShopView implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String shopId;
+    private Long shopId;
 
     private String address;
 

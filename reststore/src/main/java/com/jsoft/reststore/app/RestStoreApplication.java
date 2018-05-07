@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Class used to run the spring boot application.
  *
- * @author <a href="john_quirogac@gmail.com">John Quiroga</a>
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
  * @since 0.0.1
  */
 @SpringBootApplication

@@ -65,7 +65,7 @@ public class AppConfiguration {
 	/**
 	 * The data source bean
 	 * 
-	 * @author <a href="john.quiroga@payulatam.com">John Quiroga</a>
+	 * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
 	 */
 	@Bean
 	public DataSource dataSource() {

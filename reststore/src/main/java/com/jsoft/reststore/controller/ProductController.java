@@ -44,7 +44,7 @@ public class ProductController {
 
         if (!list.isEmpty()) {
             apiResponse.setProductList(list.stream()
-                    .map(ProductConverter::webToDomain)
+                    .map(ProductConverter::domainToWeb)
                     .collect(Collectors.toList()));
         }
 
@@ -57,8 +57,8 @@ public class ProductController {
         ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Product createdProduct = productService.save(ProductConverter.domainToWeb(product));
-        apiResponse.setProduct(ProductConverter.webToDomain(createdProduct));
+        Product createdProduct = productService.save(ProductConverter.webToDomain(product));
+        apiResponse.setProduct(ProductConverter.domainToWeb(createdProduct));
 
         return httpResponse;
     }

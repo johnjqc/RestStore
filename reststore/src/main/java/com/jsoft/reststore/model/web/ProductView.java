@@ -12,7 +12,7 @@ public class ProductView implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String productId;
+    private Long productId;
 
     private String barcode;
 

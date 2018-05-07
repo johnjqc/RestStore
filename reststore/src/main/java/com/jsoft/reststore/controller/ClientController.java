@@ -44,7 +44,7 @@ public class ClientController {
 
         if (!list.isEmpty()) {
             apiResponse.setClientList(list.stream()
-                    .map(ClientConverter::webToDomain)
+                    .map(ClientConverter::domainToWeb)
                     .collect(Collectors.toList()));
         }
 
@@ -57,8 +57,8 @@ public class ClientController {
         ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Client createdClient = clientService.save(ClientConverter.domainToWeb(client));
-        apiResponse.setClient(ClientConverter.webToDomain(createdClient));
+        Client createdClient = clientService.save(ClientConverter.webToDomain(client));
+        apiResponse.setClient(ClientConverter.domainToWeb(createdClient));
 
         return httpResponse;
     }

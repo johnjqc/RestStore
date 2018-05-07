@@ -1,22 +1,31 @@
 package com.jsoft.reststore.model;
 
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * This class represents a Product.
+ *
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ * @since 0.0.1
+ */
 @Entity
 @EqualsAndHashCode
+@GenericGenerator(name = "product_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+        parameters = { @org.hibernate.annotations.Parameter(name = "sequence_name", value = "product_seq"),
+                @org.hibernate.annotations.Parameter(name = "increment_size", value = "1") })
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="PRODUCT_PRODUCTID_GENERATOR", sequenceName="PRODUCT_SEQ")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUCT_PRODUCTID_GENERATOR")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_seq")
     @Column(name="product_id")
-    private String productId;
+    private Long productId;
 
     private String barcode;
 
@@ -34,11 +43,11 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

@@ -6,6 +6,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * This class represents a Shop.
+ *
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ * @since 0.0.1
+ */
 @Entity
 @EqualsAndHashCode
 public class Shop implements Serializable {
@@ -15,7 +21,7 @@ public class Shop implements Serializable {
     @SequenceGenerator(name="SHOP_SHOPID_GENERATOR", sequenceName="SHOP_SEQ")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SHOP_SHOPID_GENERATOR")
     @Column(name="shop_id")
-    private String shopId;
+    private Long shopId;
 
     private String address;
 
@@ -31,11 +37,11 @@ public class Shop implements Serializable {
     public Shop() {
     }
 
-    public String getShopId() {
+    public Long getShopId() {
         return this.shopId;
     }
 
-    public void setShopId(String shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 

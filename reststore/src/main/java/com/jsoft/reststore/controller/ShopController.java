@@ -44,7 +44,7 @@ public class ShopController {
 
         if (!list.isEmpty()) {
             apiResponse.setShopList(list.stream()
-                    .map(ShopConverter::webToDomain)
+                    .map(ShopConverter::domainToWeb)
                     .collect(Collectors.toList()));
         }
 
@@ -57,8 +57,8 @@ public class ShopController {
         ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Shop createdShop = shopService.save(ShopConverter.domainToWeb(shop));
-        apiResponse.setShop(ShopConverter.webToDomain(createdShop));
+        Shop createdShop = shopService.save(ShopConverter.webToDomain(shop));
+        apiResponse.setShop(ShopConverter.domainToWeb(createdShop));
 
         return httpResponse;
     }

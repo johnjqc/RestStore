@@ -1,5 +1,5 @@
 CREATE TABLE client (
-	client_id varchar(36) NOT NULL,
+	client_id numeric(19) NOT NULL,
 	client_name varchar(255) NOT NULL,
 	age int4 NOT NULL,
 	document numeric(10) NOT NULL DEFAULT 0,
@@ -12,7 +12,7 @@ CREATE TABLE client (
 );
 
 CREATE TABLE product (
-	product_id varchar(36) NOT NULL,
+	product_id numeric(19) NOT NULL,
 	product_name varchar(255) NOT NULL,
 	description text NOT NULL,
 	cost numeric(19,2) NOT NULL DEFAULT 0,
@@ -21,7 +21,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE shop (
-	shop_id varchar(36) NOT NULL,
+	shop_id numeric(19) NOT NULL,
 	shop_name varchar(255) NOT NULL,
 	schedule varchar(50) NOT NULL,
 	address varchar(255) NOT NULL,
@@ -29,11 +29,11 @@ CREATE TABLE shop (
 );
 
 CREATE TABLE inventory (
-	inevntario_id varchar(36) NOT NULL DEFAULT nextval('inventory_seq'::regclass),
-	shop_id varchar(36) NOT NULL,
-	product_id varchar(36) NOT NULL,
-	existencia varchar(255) NOT NULL,
-	PRIMARY KEY (inevntario_id),
+	inventory_id numeric(19) NOT NULL DEFAULT nextval('inventory_seq'::regclass),
+	shop_id numeric(19) NOT NULL,
+	product_id numeric(19) NOT NULL,
+	total varchar(255) NOT NULL,
+	PRIMARY KEY (inventory_id),
 	FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE,
 	FOREIGN KEY (shop_id) REFERENCES shop(shop_id) ON DELETE CASCADE
 );
