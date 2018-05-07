@@ -1,6 +1,8 @@
 package com.jsoft.reststore.controller;
 
 import com.jsoft.reststore.model.Client;
+import com.jsoft.reststore.model.common.ApiResponseCode;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.model.converter.ClientConverter;
 import com.jsoft.reststore.model.web.ClientResponse;
 import com.jsoft.reststore.model.web.ClientView;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/client")
-public class ClientController {
+public class ClientController extends AbstractController {
 
     /**
      * The {@link ClientController} logger
@@ -40,12 +42,17 @@ public class ClientController {
 
         logger.debug("Query all Clients");
 
-        List<Client> list = clientService.findAll();
+        try {
+            List<Client> list = clientService.findAll();
 
-        if (!list.isEmpty()) {
-            apiResponse.setClientList(list.stream()
-                    .map(ClientConverter::domainToWeb)
-                    .collect(Collectors.toList()));
+            if (!list.isEmpty()) {
+                apiResponse.setClientList(list.stream()
+                        .map(ClientConverter::domainToWeb)
+                        .collect(Collectors.toList()));
+                apiResponse.setApiResponseCode(ApiResponseCode.SUCCESS);
+            }
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
         }
 
         return httpResponse;
@@ -57,8 +64,19 @@ public class ClientController {
         ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Client createdClient = clientService.save(ClientConverter.webToDomain(client));
-        apiResponse.setClient(ClientConverter.domainToWeb(createdClient));
+        try {
+            Client createdClient = clientService.save(ClientConverter.webToDomain(client));
+            apiResponse.setClient(ClientConverter.domainToWeb(createdClient));
+
+            if (client.getClientId() == null) {
+                apiResponse.setApiResponseCode(ApiResponseCode.CLIENT_CREATED);
+            } else {
+                apiResponse.setApiResponseCode(ApiResponseCode.CLIENT_UPDATED);
+            }
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
     }
@@ -68,8 +86,19 @@ public class ClientController {
         ClientResponse apiResponse = new ClientResponse();
         ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
-        clientService.deleteById(id);
+        try {
+            clientService.deleteById(id);
+            apiResponse.setApiResponseCode(ApiResponseCode.CLIENT_DELETED);
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
+    }
+
+    @Override
+    Logger getLogger() {
+        return logger;
     }
 }

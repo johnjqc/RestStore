@@ -1,6 +1,8 @@
 package com.jsoft.reststore.controller;
 
 import com.jsoft.reststore.model.Shop;
+import com.jsoft.reststore.model.common.ApiResponseCode;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.model.converter.ShopConverter;
 import com.jsoft.reststore.model.web.ShopResponse;
 import com.jsoft.reststore.model.web.ShopView;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/shop")
-public class ShopController {
+public class ShopController extends AbstractController {
 
     /**
      * The {@link ShopController} logger
@@ -40,12 +42,17 @@ public class ShopController {
 
         logger.debug("Query all Shops");
 
-        List<Shop> list = shopService.findAll();
+        try {
+            List<Shop> list = shopService.findAll();
 
-        if (!list.isEmpty()) {
-            apiResponse.setShopList(list.stream()
-                    .map(ShopConverter::domainToWeb)
-                    .collect(Collectors.toList()));
+            if (!list.isEmpty()) {
+                apiResponse.setShopList(list.stream()
+                        .map(ShopConverter::domainToWeb)
+                        .collect(Collectors.toList()));
+                apiResponse.setApiResponseCode(ApiResponseCode.SUCCESS);
+            }
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
         }
 
         return httpResponse;
@@ -57,8 +64,18 @@ public class ShopController {
         ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Shop createdShop = shopService.save(ShopConverter.webToDomain(shop));
-        apiResponse.setShop(ShopConverter.domainToWeb(createdShop));
+        try {
+            Shop createdShop = shopService.save(ShopConverter.webToDomain(shop));
+            apiResponse.setShop(ShopConverter.domainToWeb(createdShop));
+            if (shop.getShopId() == null) {
+                apiResponse.setApiResponseCode(ApiResponseCode.SHOP_CREATED);
+            } else {
+                apiResponse.setApiResponseCode(ApiResponseCode.SHOP_UPDATED);
+            }
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
     }
@@ -68,8 +85,19 @@ public class ShopController {
         ShopResponse apiResponse = new ShopResponse();
         ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
-        shopService.deleteById(id);
+        try {
+            shopService.deleteById(id);
+            apiResponse.setApiResponseCode(ApiResponseCode.SHOP_DELETED);
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
+    }
+
+    @Override
+    Logger getLogger() {
+        return logger;
     }
 }

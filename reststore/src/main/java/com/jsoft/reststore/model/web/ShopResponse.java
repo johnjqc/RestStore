@@ -1,6 +1,7 @@
 package com.jsoft.reststore.model.web;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.jsoft.reststore.model.common.ApiResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

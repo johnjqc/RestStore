@@ -1,4 +1,4 @@
-package com.jsoft.reststore.model.web;
+package com.jsoft.reststore.model.common;
 
 /**
  * API response message codes.
@@ -27,7 +27,32 @@ public enum ApiResponseCode {
 	SUCCESS("0", "SUCCESS"),
 
 	/** The failed result for unexpected problems. */
-	FAILED("1", "Unexpected error");
+	FAILED("1", "Unexpected error"),
+
+	ERROR_ON_DATABASE_QUERY("1101", "Error on database query"),
+
+	ERROR_ON_DATABASE_STORE("1102", "Error on database store"),
+
+	ERROR_ON_DATABASE_DELETE("1103", "Error on database delete"),
+
+	CLIENT_CREATED("1201", "Client created"),
+
+	CLIENT_DELETED("1202", "Client deleted"),
+
+	CLIENT_UPDATED("1202", "Client updated"),
+
+	PRODUCT_CREATED("1201", "Product created"),
+
+	PRODUCT_DELETED("1202", "Product deleted"),
+
+	PRODUCT_UPDATED("1202", "Product updated"),
+
+	SHOP_CREATED("1201", "Shop created"),
+
+	SHOP_DELETED("1202", "Shop deleted"),
+
+	SHOP_UPDATED("1202", "Shop updated");
+
 
 	/**
 	 * The API response code id.

@@ -1,6 +1,8 @@
 package com.jsoft.reststore.controller;
 
 import com.jsoft.reststore.model.Product;
+import com.jsoft.reststore.model.common.ApiResponseCode;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.model.converter.ProductConverter;
 import com.jsoft.reststore.model.web.ProductResponse;
 import com.jsoft.reststore.model.web.ProductView;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/product")
-public class ProductController {
+public class ProductController extends AbstractController {
 
     /**
      * The {@link ProductController} logger
@@ -40,12 +42,17 @@ public class ProductController {
 
         logger.debug("Query all Products");
 
-        List<Product> list = productService.findAll();
+        try {
+            List<Product> list = productService.findAll();
 
-        if (!list.isEmpty()) {
-            apiResponse.setProductList(list.stream()
-                    .map(ProductConverter::domainToWeb)
-                    .collect(Collectors.toList()));
+            if (!list.isEmpty()) {
+                apiResponse.setProductList(list.stream()
+                        .map(ProductConverter::domainToWeb)
+                        .collect(Collectors.toList()));
+                apiResponse.setApiResponseCode(ApiResponseCode.SUCCESS);
+            }
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
         }
 
         return httpResponse;
@@ -57,8 +64,19 @@ public class ProductController {
         ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse,
                 HttpStatus.CREATED);
 
-        Product createdProduct = productService.save(ProductConverter.webToDomain(product));
-        apiResponse.setProduct(ProductConverter.domainToWeb(createdProduct));
+        try {
+            Product createdProduct = productService.save(ProductConverter.webToDomain(product));
+            apiResponse.setProduct(ProductConverter.domainToWeb(createdProduct));
+
+            if (product.getProductId() == null) {
+                apiResponse.setApiResponseCode(ApiResponseCode.PRODUCT_CREATED);
+            } else {
+                apiResponse.setApiResponseCode(ApiResponseCode.PRODUCT_UPDATED);
+            }
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
     }
@@ -68,8 +86,19 @@ public class ProductController {
         ProductResponse apiResponse = new ProductResponse();
         ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
-        productService.deleteById(id);
+        try {
+            productService.deleteById(id);
+            apiResponse.setApiResponseCode(ApiResponseCode.PRODUCT_DELETED);
+
+        } catch (StoreApiException e) {
+            handleException(e, apiResponse);
+        }
 
         return httpResponse;
+    }
+
+    @Override
+    Logger getLogger() {
+        return logger;
     }
 }

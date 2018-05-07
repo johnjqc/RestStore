@@ -1,5 +1,6 @@
 package com.jsoft.reststore.service;
 
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.AbstractService;
 
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
  */
 public interface IGenericService<J> {
 
-    J save(J j);
+    J save(J j) throws StoreApiException;
 
-    List<J> findAll();
+    List<J> findAll() throws StoreApiException;
 
-    boolean deleteById(Long id);
+    void deleteById(Long id) throws StoreApiException;
 
 }

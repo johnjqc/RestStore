@@ -1,5 +1,7 @@
 package com.jsoft.reststore.service.impl;
 
+import com.jsoft.reststore.model.common.ApiResponseCode;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.IGenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -21,20 +23,31 @@ public abstract class AbstractService<T extends CrudRepository, J> implements IG
     private T repository;
 
     @Override
-    public J save(J j) {
-        return (J)repository.save(j);
+    public J save(J j) throws StoreApiException {
+        try {
+            return (J)repository.save(j);
+        } catch (Exception e) {
+            throw new StoreApiException(ApiResponseCode.ERROR_ON_DATABASE_STORE, e);
+        }
     }
 
     @Override
-    public List<J> findAll() {
-        return (List<J>)StreamSupport.stream(repository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+    public List<J> findAll() throws StoreApiException {
+        try {
+            return (List<J>)StreamSupport.stream(repository.findAll().spliterator(), false)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new StoreApiException(ApiResponseCode.ERROR_ON_DATABASE_QUERY, e);
+        }
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        repository.deleteById(id);
-        return true;
+    public void deleteById(Long id) throws StoreApiException {
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            throw new StoreApiException(ApiResponseCode.ERROR_ON_DATABASE_DELETE, e);
+        }
     }
 
 }

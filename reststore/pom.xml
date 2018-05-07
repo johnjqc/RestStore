@@ -14,6 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<postgresql-version>42.1.4</postgresql-version>
+		<common-lang-version>3.3.2</common-lang-version>
 
 		<powermock-version>1.6.5</powermock-version>
 		<mockito-version>2.10.0</mockito-version>
@@ -52,7 +53,11 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${common-lang-version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
