@@ -8,8 +8,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * The service implementation for generic operations
+ *
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ * @since 0.0.1
+ */
 public abstract class AbstractService<T extends CrudRepository, J> implements IGenericService<J> {
 
+    /** The repository defined on type T for manage persitence operations */
     @Autowired
     private T repository;
 

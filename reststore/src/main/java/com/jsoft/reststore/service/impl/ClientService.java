@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+/**
+ * The service implementation for client operations
+ *
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ * @since 0.0.1
+ */
 @Service
 public class ClientService extends AbstractService<ClientRepository, Client> implements IClientService {
 
