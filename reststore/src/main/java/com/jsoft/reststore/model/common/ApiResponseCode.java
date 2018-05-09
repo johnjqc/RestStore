@@ -35,23 +35,29 @@ public enum ApiResponseCode {
 
 	ERROR_ON_DATABASE_DELETE("1103", "Error on database delete"),
 
+	LOGIN_FAIL("1104", "Login fail"),
+
+	LOGIN_SUCCESS("1105", "Login success"),
+
+	ERROR_ON_ENCRYPT_PASSWORD("1105", "Error on encrypt password"),
+
 	CLIENT_CREATED("1201", "Client created"),
 
 	CLIENT_DELETED("1202", "Client deleted"),
 
 	CLIENT_UPDATED("1202", "Client updated"),
 
-	PRODUCT_CREATED("1201", "Product created"),
+	PRODUCT_CREATED("1301", "Product created"),
 
-	PRODUCT_DELETED("1202", "Product deleted"),
+	PRODUCT_DELETED("1302", "Product deleted"),
 
-	PRODUCT_UPDATED("1202", "Product updated"),
+	PRODUCT_UPDATED("1302", "Product updated"),
 
-	SHOP_CREATED("1201", "Shop created"),
+	SHOP_CREATED("1401", "Shop created"),
 
-	SHOP_DELETED("1202", "Shop deleted"),
+	SHOP_DELETED("1402", "Shop deleted"),
 
-	SHOP_UPDATED("1202", "Shop updated");
+	SHOP_UPDATED("1402", "Shop updated");
 
 
 	/**

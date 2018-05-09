@@ -1,6 +1,7 @@
 package com.jsoft.reststore.service;
 
 import com.jsoft.reststore.model.Client;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.ClientService;
 
 import java.math.BigDecimal;
@@ -20,7 +21,7 @@ public interface IClientService extends IGenericService<Client> {
      * @param password the password
      * @return the Client found
      */
-    Client findByUserAndPassword(String user, String password);
+    Client findByUserAndPassword(String user, String password) throws StoreApiException;
 
     /**
      * Find a Client by email

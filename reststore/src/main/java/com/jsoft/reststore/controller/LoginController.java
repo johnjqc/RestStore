@@ -1,6 +1,9 @@
 package com.jsoft.reststore.controller;
 
+import com.jsoft.reststore.model.Client;
+import com.jsoft.reststore.model.common.ApiResponseCode;
 import com.jsoft.reststore.model.common.StoreApiException;
+import com.jsoft.reststore.model.converter.ClientConverter;
 import com.jsoft.reststore.model.web.LoginResponse;
 import com.jsoft.reststore.model.web.LoginView;
 import com.jsoft.reststore.service.ILoginService;
@@ -35,10 +38,13 @@ public class LoginController extends AbstractController {
                 HttpStatus.OK);
 
         try {
-
-            loginService.login(login.getUser(), login.getPassword());
+            Client client = loginService.login(login.getUser(), login.getPassword());
+            apiResponse.setClient(ClientConverter.domainToWeb(client));
+            apiResponse.setApiResponseCode(ApiResponseCode.LOGIN_SUCCESS);
 
         } catch (StoreApiException e) {
+
+            logger.error("Login fail by user:{} and password: {}", login.getUser(), login.getPassword());
             handleException(e, apiResponse);
         }
 

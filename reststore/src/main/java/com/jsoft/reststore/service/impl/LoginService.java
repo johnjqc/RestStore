@@ -1,7 +1,11 @@
 package com.jsoft.reststore.service.impl;
 
+import com.jsoft.reststore.model.Client;
+import com.jsoft.reststore.model.common.ApiResponseCode;
 import com.jsoft.reststore.model.common.StoreApiException;
+import com.jsoft.reststore.service.IClientService;
 import com.jsoft.reststore.service.ILoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +17,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService implements ILoginService {
 
-    @Override
-    public void login(String user, String password) throws StoreApiException {
+    @Autowired
+    private IClientService clientService;
 
+    @Override
+    public Client login(String user, String password) throws StoreApiException {
+
+        Client client = clientService.findByUserAndPassword(user, password);
+
+        if (client == null) {
+            throw new StoreApiException(ApiResponseCode.LOGIN_FAIL);
+        } else {
+            return client;
+        }
     }
 }

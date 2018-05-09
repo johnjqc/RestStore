@@ -1,5 +1,6 @@
 package com.jsoft.reststore.service;
 
+import com.jsoft.reststore.model.Client;
 import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.LoginService;
 
@@ -11,6 +12,6 @@ import com.jsoft.reststore.service.impl.LoginService;
  */
 public interface ILoginService {
 
-    void login(String user, String password) throws StoreApiException;
+    Client login(String user, String password) throws StoreApiException;
 
 }

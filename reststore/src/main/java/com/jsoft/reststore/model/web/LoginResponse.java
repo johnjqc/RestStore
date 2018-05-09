@@ -21,13 +21,6 @@ public class LoginResponse extends ApiResponse {
      */
     private static final long serialVersionUID = 1L;
 
-    private LoginResult result;
-
-    private enum LoginResult {
-
-        SUCCESS,
-
-        FAIL
-    }
+    private ClientView client;
 
 }
