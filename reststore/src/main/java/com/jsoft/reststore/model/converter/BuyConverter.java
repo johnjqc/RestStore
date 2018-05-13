@@ -25,8 +25,7 @@ public final class BuyConverter {
         BuyView result = new BuyView();
 
         result.setBuyId(buy.getBuyId());
-        result.setInvoice(InvoiceConverter.domainToWeb(buy.getInvoice()));
-        result.setInventory(InventoryConverter.domainToWeb(buy.getInventory()));
+        result.setName(buy.getInventory().getProduct().getProductName());
         result.setTotalProduct(buy.getTotalProduct());
         result.setTotalAmount(buy.getTotalAmount());
 
@@ -44,8 +43,6 @@ public final class BuyConverter {
         Buy result = new Buy();
 
         result.setBuyId(buy.getBuyId());
-        result.setInvoice(InvoiceConverter.webToDomain(buy.getInvoice()));
-        result.setInventory(InventoryConverter.webToDomain(buy.getInventory()));
         result.setTotalProduct(buy.getTotalProduct());
         result.setTotalAmount(buy.getTotalAmount());
 
