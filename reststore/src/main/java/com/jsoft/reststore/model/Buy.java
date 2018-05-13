@@ -47,11 +47,11 @@ public class Buy implements Serializable {
     public Buy() {
     }
 
-    public long getBuyId() {
+    public Long getBuyId() {
         return this.buyId;
     }
 
-    public void setBuyId(long buyId) {
+    public void setBuyId(Long buyId) {
         this.buyId = buyId;
     }
 

@@ -2,6 +2,7 @@ package com.jsoft.reststore.controller;
 
 import com.jsoft.reststore.model.Invoice;
 import com.jsoft.reststore.model.common.StoreApiException;
+import com.jsoft.reststore.model.converter.InvoiceConverter;
 import com.jsoft.reststore.model.web.BuyResponse;
 import com.jsoft.reststore.model.web.BuyRequest;
 import com.jsoft.reststore.service.IBuyService;
@@ -38,8 +39,7 @@ public class BuyController  extends AbstractController {
         try {
             Invoice invoice = buyService.buy(buyRequest.getUser(), buyRequest.getPassword(), buyRequest.getShopId(),
                     buyRequest.getProduct());
-//            BuyView buyResponse = BuyConverter.domainToWeb(buy);
-//            apiResponse.setBuy(buyResponse);
+            apiResponse.setInvoice(InvoiceConverter.domainToWeb(invoice));
 
         } catch (StoreApiException e) {
             handleException(e, apiResponse);

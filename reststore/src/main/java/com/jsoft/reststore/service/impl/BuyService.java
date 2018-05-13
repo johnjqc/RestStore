@@ -35,25 +35,32 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
     @Autowired
     private IInventoryService inventoryService;
 
+    @Autowired
+    private IInvoiceService invoiceService;
+
     @Override
     public Invoice buy(String user, String password, Long shopId, Map<String, Integer> productList) throws StoreApiException {
 
         Client client = loginService.login(user, password);
         Shop shop = shopService.findById(shopId);
 
-        List<Buy> buyList = buildBuyList(shopId, productList);
-        Invoice invoice = buildInvoice(client, buyList);
-        buyList.forEach( buy -> buy.setInvoice(invoice));
+        List<Buy> buyList = buildBuyList(shop, productList);
+        Invoice invoice = invoiceService.save(buildInvoice(client, buyList));
+
+        for (Buy buy : buyList) {
+            buy.setInvoice(invoice);
+            buy = save(buy);
+        }
 
         return invoice;
     }
 
-    private List<Buy> buildBuyList(Long shopId, Map<String, Integer> productList) throws StoreApiException {
+    private List<Buy> buildBuyList(Shop shop, Map<String, Integer> productList) throws StoreApiException {
         List<Buy> buyList = new ArrayList<>();
 
         for (Map.Entry<String, Integer> entry : productList.entrySet()) {
             Product product = productService.findByBarcode(entry.getKey());
-            Inventory inventory = inventoryService.findByProductAndShop(product.getProductId(), shopId);
+            Inventory inventory = inventoryService.findByProductAndShop(product, shop);
 
             if (inventoryHasSufficientProduct(inventory.getTotal(), entry.getValue(), product.getProductName())) {
                 Buy buy = new Buy();
@@ -73,6 +80,7 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
         invoice.setClient(client);
         invoice.setBuyDate(new Timestamp(System.currentTimeMillis()));
         invoice.setBuys(buyList);
+        invoice.setAmount(buyList.stream().map(Buy::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add));
 
         return invoice;
     }

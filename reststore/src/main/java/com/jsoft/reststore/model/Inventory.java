@@ -46,11 +46,11 @@ public class Inventory implements Serializable {
     public Inventory() {
     }
 
-    public long getInventoryId() {
+    public Long getInventoryId() {
         return this.inventoryId;
     }
 
-    public void setInventoryId(long inventoryId) {
+    public void setInventoryId(Long inventoryId) {
         this.inventoryId = inventoryId;
     }
 

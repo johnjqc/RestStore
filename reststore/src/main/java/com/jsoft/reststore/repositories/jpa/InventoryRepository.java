@@ -1,6 +1,8 @@
 package com.jsoft.reststore.repositories.jpa;
 
 import com.jsoft.reststore.model.Inventory;
+import com.jsoft.reststore.model.Product;
+import com.jsoft.reststore.model.Shop;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -11,6 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface InventoryRepository extends CrudRepository<Inventory, Long> {
 
-    Inventory findByProductAndShop(Long productId, Long shopId);
+    Inventory findByProductAndShop(Product product, Shop shop);
 
 }

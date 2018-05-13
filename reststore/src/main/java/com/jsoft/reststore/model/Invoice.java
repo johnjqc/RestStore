@@ -27,7 +27,7 @@ public class Invoice implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="invoice_seq")
     @Column(name="invoice_id")
-    private long invoiceId;
+    private Long invoiceId;
 
     private BigDecimal amount;
 
@@ -46,11 +46,11 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
-    public long getInvoiceId() {
+    public Long getInvoiceId() {
         return this.invoiceId;
     }
 
-    public void setInvoiceId(long invoiceId) {
+    public void setInvoiceId(Long invoiceId) {
         this.invoiceId = invoiceId;
     }
 
