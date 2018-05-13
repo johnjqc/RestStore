@@ -30,7 +30,6 @@ public final class ClientConverter {
         result.setAge(client.getAge());
         result.setEmail(client.getEmail());
         result.setClientUser(client.getClientUser());
-        result.setPassword(client.getPassword());
 
         return result;
     }

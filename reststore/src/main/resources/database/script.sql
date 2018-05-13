@@ -38,8 +38,20 @@ CREATE TABLE inventory (
 	FOREIGN KEY (shop_id) REFERENCES shop(shop_id) ON DELETE CASCADE
 );
 
+CREATE TABLE buy (
+    buy_id numeric(19) NOT NULL DEFAULT nextval('buy_seq'::regclass),
+    client_id numeric(19),
+    inventory_id numeric(19),
+    product_id numeric(19),
+    amount numeric(19),
+    PRIMARY KEY (buy_id),
+    FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE,
+    FOREIGN KEY (inventory_id) REFERENCES inventory(inventory_id) ON DELETE CASCADE
+);
+
 CREATE SEQUENCE client_seq;
 CREATE SEQUENCE product_seq;
 CREATE SEQUENCE shop_seq;
 CREATE SEQUENCE inventory_seq;
+CREATE SEQUENCE buy_seq;
 

@@ -37,8 +37,7 @@ public class ProductController extends AbstractController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<ProductResponse> queryAll() {
         ProductResponse apiResponse = new ProductResponse();
-        ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.FOUND);
+        ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.FOUND);
 
         logger.debug("Query all Products");
 
@@ -61,8 +60,7 @@ public class ProductController extends AbstractController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductView product) {
         ProductResponse apiResponse = new ProductResponse();
-        ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.CREATED);
+        ResponseEntity<ProductResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
 
         try {
             Product createdProduct = productService.save(ProductConverter.webToDomain(product));

@@ -34,8 +34,7 @@ public class LoginController extends AbstractController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginView login) {
         LoginResponse apiResponse = new LoginResponse();
-        ResponseEntity<LoginResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.OK);
+        ResponseEntity<LoginResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
         try {
             Client client = loginService.login(login.getUser(), login.getPassword());

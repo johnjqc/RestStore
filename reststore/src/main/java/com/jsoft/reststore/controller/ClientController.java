@@ -37,8 +37,7 @@ public class ClientController extends AbstractController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<ClientResponse> queryAll() {
         ClientResponse apiResponse = new ClientResponse();
-        ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.FOUND);
+        ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.FOUND);
 
         logger.debug("Query all Clients");
 
@@ -61,8 +60,7 @@ public class ClientController extends AbstractController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<ClientResponse> createClient(@Valid @RequestBody ClientView client) {
         ClientResponse apiResponse = new ClientResponse();
-        ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.CREATED);
+        ResponseEntity<ClientResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
 
         try {
             Client createdClient = clientService.save(ClientConverter.webToDomain(client));

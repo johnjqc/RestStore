@@ -78,7 +78,7 @@ public enum ApiResponseCode {
 	 * @param description
 	 *            the API response code description.
 	 */
-	private ApiResponseCode(String id, String description) {
+	ApiResponseCode(String id, String description) {
 
 		this.id = id;
 		this.description = description;

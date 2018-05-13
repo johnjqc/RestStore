@@ -37,8 +37,7 @@ public class ShopController extends AbstractController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<ShopResponse> queryAll() {
         ShopResponse apiResponse = new ShopResponse();
-        ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.FOUND);
+        ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.FOUND);
 
         logger.debug("Query all Shops");
 
@@ -61,8 +60,7 @@ public class ShopController extends AbstractController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<ShopResponse> createShop(@Valid @RequestBody ShopView shop) {
         ShopResponse apiResponse = new ShopResponse();
-        ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse,
-                HttpStatus.CREATED);
+        ResponseEntity<ShopResponse> httpResponse = new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
 
         try {
             Shop createdShop = shopService.save(ShopConverter.webToDomain(shop));
