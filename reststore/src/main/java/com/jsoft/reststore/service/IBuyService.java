@@ -1,8 +1,10 @@
 package com.jsoft.reststore.service;
 
-import com.jsoft.reststore.model.Buy;
+import com.jsoft.reststore.model.Invoice;
 import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.BuyService;
+
+import java.util.Map;
 
 /**
  * The interface for {@link BuyService}
@@ -12,6 +14,6 @@ import com.jsoft.reststore.service.impl.BuyService;
  */
 public interface IBuyService {
 
-    Buy buy() throws StoreApiException;
+    Invoice buy(String user, String password, Long shopId, Map<String, Integer> productList) throws StoreApiException;
 
 }

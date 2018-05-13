@@ -28,20 +28,21 @@ public class Buy implements Serializable {
     @Column(name="buy_id")
     private Long buyId;
 
-    private BigDecimal amount;
+    @Column(name="total_amount")
+    private BigDecimal totalAmount;
 
-    @Column(name="client_id")
-    private BigDecimal clientId;
+    @Column(name="total_product")
+    private BigDecimal totalProduct;
 
     //bi-directional many-to-one association to Inventory
     @ManyToOne
     @JoinColumn(name="inventory_id")
     private Inventory inventory;
 
-    //bi-directional many-to-one association to Product
+    //bi-directional many-to-one association to Invoice
     @ManyToOne
-    @JoinColumn(name="product_id")
-    private Product product;
+    @JoinColumn(name="invoice_id")
+    private Invoice invoice;
 
     public Buy() {
     }
@@ -54,20 +55,20 @@ public class Buy implements Serializable {
         this.buyId = buyId;
     }
 
-    public BigDecimal getAmount() {
-        return this.amount;
+    public BigDecimal getTotalAmount() {
+        return this.totalAmount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public BigDecimal getClientId() {
-        return this.clientId;
+    public BigDecimal getTotalProduct() {
+        return this.totalProduct;
     }
 
-    public void setClientId(BigDecimal clientId) {
-        this.clientId = clientId;
+    public void setTotalProduct(BigDecimal totalProduct) {
+        this.totalProduct = totalProduct;
     }
 
     public Inventory getInventory() {
@@ -78,12 +79,12 @@ public class Buy implements Serializable {
         this.inventory = inventory;
     }
 
-    public Product getProduct() {
-        return this.product;
+    public Invoice getInvoice() {
+        return this.invoice;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
 }

@@ -21,7 +21,7 @@ public class BuyResponse extends ApiResponse {
      */
     private static final long serialVersionUID = 1L;
 
-    private BuyViewResponse buy;
+    private BuyView buy;
 
 
 }

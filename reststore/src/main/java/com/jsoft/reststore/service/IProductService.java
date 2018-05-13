@@ -1,6 +1,7 @@
 package com.jsoft.reststore.service;
 
 import com.jsoft.reststore.model.Product;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.ProductService;
 
 /**
@@ -10,4 +11,6 @@ import com.jsoft.reststore.service.impl.ProductService;
  * @since 0.0.1
  */
 public interface IProductService extends IGenericService<Product> {
+
+    Product findByBarcode(String barcode) throws StoreApiException;
 }

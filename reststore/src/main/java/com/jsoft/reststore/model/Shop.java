@@ -1,6 +1,7 @@
 package com.jsoft.reststore.model;
 
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,12 +15,14 @@ import java.util.List;
  */
 @Entity
 @EqualsAndHashCode
+@GenericGenerator(name = "shop_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+        parameters = { @org.hibernate.annotations.Parameter(name = "sequence_name", value = "shop_seq"),
+                @org.hibernate.annotations.Parameter(name = "increment_size", value = "1") })
 public class Shop implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="SHOP_SHOPID_GENERATOR", sequenceName="SHOP_SEQ")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SHOP_SHOPID_GENERATOR")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="shop_seq")
     @Column(name="shop_id")
     private Long shopId;
 

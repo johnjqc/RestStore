@@ -1,6 +1,7 @@
 package com.jsoft.reststore.service;
 
 import com.jsoft.reststore.model.Inventory;
+import com.jsoft.reststore.model.common.StoreApiException;
 import com.jsoft.reststore.service.impl.InventoryService;
 
 /**
@@ -11,4 +12,5 @@ import com.jsoft.reststore.service.impl.InventoryService;
  */
 public interface IInventoryService extends IGenericService<Inventory> {
 
+    Inventory findByProductAndShop(Long productId, Long shopId) throws StoreApiException;
 }

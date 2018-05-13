@@ -10,4 +10,7 @@ import org.springframework.data.repository.CrudRepository;
  * @since 0.0.1
  */
 public interface InventoryRepository extends CrudRepository<Inventory, Long> {
+
+    Inventory findByProductAndShop(Long productId, Long shopId);
+
 }

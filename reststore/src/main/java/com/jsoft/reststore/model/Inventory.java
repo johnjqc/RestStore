@@ -1,9 +1,12 @@
 package com.jsoft.reststore.model;
 
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * This class represents a Inventory.
@@ -13,16 +16,22 @@ import java.io.Serializable;
  */
 @Entity
 @EqualsAndHashCode
+@GenericGenerator(name = "inventory_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+        parameters = { @org.hibernate.annotations.Parameter(name = "sequence_name", value = "inventory_seq"),
+                @org.hibernate.annotations.Parameter(name = "increment_size", value = "1") })
 public class Inventory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="INVENTORY_INVENTARIOID_GENERATOR", sequenceName="INVENTORY_SEQ")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INVENTORY_INVENTARIOID_GENERATOR")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="inventory_seq")
     @Column(name="inventory_id")
     private Long inventoryId;
 
-    private String total;
+    private BigDecimal total;
+
+    //bi-directional many-to-one association to Buy
+    @OneToMany(mappedBy="inventory")
+    private List<Buy> buys;
 
     //bi-directional many-to-one association to Product
     @ManyToOne
@@ -37,20 +46,42 @@ public class Inventory implements Serializable {
     public Inventory() {
     }
 
-    public Long getInventoryId() {
+    public long getInventoryId() {
         return this.inventoryId;
     }
 
-    public void setInventoryId(Long inventoryId) {
+    public void setInventoryId(long inventoryId) {
         this.inventoryId = inventoryId;
     }
 
-    public String getTotal() {
+    public BigDecimal getTotal() {
         return this.total;
     }
 
-    public void setTotal(String existencia) {
-        this.total = existencia;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public List<Buy> getBuys() {
+        return this.buys;
+    }
+
+    public void setBuys(List<Buy> buys) {
+        this.buys = buys;
+    }
+
+    public Buy addBuy(Buy buy) {
+        getBuys().add(buy);
+        buy.setInventory(this);
+
+        return buy;
+    }
+
+    public Buy removeBuy(Buy buy) {
+        getBuys().remove(buy);
+        buy.setInventory(null);
+
+        return buy;
     }
 
     public Product getProduct() {

@@ -13,6 +13,7 @@ package com.jsoft.reststore.model.common;
  * 12xx - Clients 
  * 13xx - Product
  * 14xx - Shop
+ * 15xx - Inventory
  * 
  * And YY represents the component's code ID.
  * 
@@ -53,11 +54,19 @@ public enum ApiResponseCode {
 
 	PRODUCT_UPDATED("1302", "Product updated"),
 
+	PRODUCT_NOT_FOUND("1303", "Product not found"),
+
 	SHOP_CREATED("1401", "Shop created"),
 
 	SHOP_DELETED("1402", "Shop deleted"),
 
-	SHOP_UPDATED("1402", "Shop updated");
+	SHOP_UPDATED("1402", "Shop updated"),
+
+	SHOP_NOT_FOUND("1403", "Shop not found"),
+
+	INVENTORY_NOT_FOUND("1501", "Inventory not found"),
+
+	INSUFFICIENT_PRODUCT("1502", "Inventory not have required quantity");
 
 
 	/**
