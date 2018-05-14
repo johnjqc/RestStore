@@ -52,7 +52,20 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
             buy = save(buy);
         }
 
+        updateInvenory(shop, productList);
+
         return invoice;
+    }
+
+    private void updateInvenory(Shop shop, Map<String, Integer> productList) throws StoreApiException {
+
+        for (Map.Entry<String, Integer> entry : productList.entrySet()) {
+            Product product = productService.findByBarcode(entry.getKey());
+            Inventory inventory = inventoryService.findByProductAndShop(product, shop);
+
+            inventory.setTotal(inventory.getTotal().subtract(new BigDecimal(entry.getValue())));
+            inventoryService.save(inventory);
+        }
     }
 
     private List<Buy> buildBuyList(Shop shop, Map<String, Integer> productList) throws StoreApiException {

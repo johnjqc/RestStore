@@ -16,18 +16,22 @@ public class ClientView implements Serializable {
 
     private Long clientId;
 
+    @NotNull
     private Integer age;
 
     @NotNull
     private String clientName;
 
+    @NotNull
     private String clientUser;
 
+    @NotNull
     private BigDecimal document;
 
     @Email
     private String email;
 
+    @NotNull
     private String password;
 
 }
