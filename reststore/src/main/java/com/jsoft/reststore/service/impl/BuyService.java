@@ -52,12 +52,18 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
             buy = save(buy);
         }
 
-        updateInvenory(shop, productList);
+        updateInventory(shop, productList);
 
         return invoice;
     }
 
-    private void updateInvenory(Shop shop, Map<String, Integer> productList) throws StoreApiException {
+    /**
+     * Update total of producto on inventory for each shop
+     * @param shop the shop
+     * @param productList the product list with require quantity
+     * @throws StoreApiException
+     */
+    private void updateInventory(Shop shop, Map<String, Integer> productList) throws StoreApiException {
 
         for (Map.Entry<String, Integer> entry : productList.entrySet()) {
             Product product = productService.findByBarcode(entry.getKey());
@@ -68,6 +74,13 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
         }
     }
 
+    /**
+     * Build the list of item on order buy and validate if inventory have disponibility
+     * @param shop the shop
+     * @param productList the product list with require quantity
+     * @return the list buy detailed
+     * @throws StoreApiException
+     */
     private List<Buy> buildBuyList(Shop shop, Map<String, Integer> productList) throws StoreApiException {
         List<Buy> buyList = new ArrayList<>();
 
@@ -88,6 +101,12 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
         return buyList;
     }
 
+    /**
+     * Build the invoince for buy
+     * @param client the client of the buy
+     * @param buyList the buy list of products
+     * @return the invoice
+     */
     private static Invoice buildInvoice(Client client, List<Buy> buyList) {
         Invoice invoice = new Invoice();
         invoice.setClient(client);
@@ -98,6 +117,14 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
         return invoice;
     }
 
+    /**
+     * Validate if total of inventory is less than required products
+     * @param total the total of inventory
+     * @param required the required products
+     * @param name the name of product
+     * @return True if inventory has required quantity
+     * @throws StoreApiException
+     */
     private static boolean inventoryHasSufficientProduct(BigDecimal total, int required, String name) throws StoreApiException {
         if (total.compareTo(new BigDecimal(required)) < 0) {
             throw new StoreApiException(ApiResponseCode.INSUFFICIENT_PRODUCT, "The shop not have sufficient " + name);
@@ -105,6 +132,12 @@ public class BuyService extends AbstractService<BuyRepository, Buy> implements I
         return true;
     }
 
+    /**
+     * calculate the total o buy by product
+     * @param totalProduct the total of products
+     * @param cost the cost of product
+     * @return the total amount
+     */
     private static BigDecimal getTotalBuyAmount(int totalProduct, BigDecimal cost) {
 
         return cost.multiply(new BigDecimal(totalProduct));

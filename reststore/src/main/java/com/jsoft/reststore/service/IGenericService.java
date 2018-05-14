@@ -13,10 +13,27 @@ import java.util.List;
  */
 public interface IGenericService<J> {
 
+    /**
+     * Save an entity
+     *
+     * @param j the entity
+     * @return the saved entity
+     * @throws StoreApiException
+     */
     J save(J j) throws StoreApiException;
 
+    /**
+     * Find all items
+     * @return the list of  entities
+     * @throws StoreApiException
+     */
     List<J> findAll() throws StoreApiException;
 
+    /**
+     * Delete by Id entity
+     * @param id the id
+     * @throws StoreApiException
+     */
     void deleteById(Long id) throws StoreApiException;
 
 }

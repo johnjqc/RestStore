@@ -11,5 +11,10 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
+    /**
+     * Find a product by barcode
+     * @param barcode the barcode
+     * @return the product
+     */
     Product findByBarcode(String barcode);
 }

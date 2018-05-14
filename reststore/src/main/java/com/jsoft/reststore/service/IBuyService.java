@@ -14,6 +14,16 @@ import java.util.Map;
  */
 public interface IBuyService {
 
+    /**
+     * Process of buy order
+     *
+     * @param user the user
+     * @param password the password
+     * @param shopId the shop id of buy
+     * @param productList the product list of buy
+     * @return the Generated invoice
+     * @throws StoreApiException
+     */
     Invoice buy(String user, String password, Long shopId, Map<String, Integer> productList) throws StoreApiException;
 
 }

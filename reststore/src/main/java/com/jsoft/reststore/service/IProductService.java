@@ -12,5 +12,11 @@ import com.jsoft.reststore.service.impl.ProductService;
  */
 public interface IProductService extends IGenericService<Product> {
 
+    /**
+     * Find a product by barcode
+     * @param barcode the barcode
+     * @return the product
+     * @throws StoreApiException
+     */
     Product findByBarcode(String barcode) throws StoreApiException;
 }

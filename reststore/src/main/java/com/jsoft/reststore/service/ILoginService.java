@@ -12,6 +12,14 @@ import com.jsoft.reststore.service.impl.LoginService;
  */
 public interface ILoginService {
 
+    /**
+     * Validate user credentials
+     *
+     * @param user the user
+     * @param password the password
+     * @return the client information
+     * @throws StoreApiException
+     */
     Client login(String user, String password) throws StoreApiException;
 
 }

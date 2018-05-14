@@ -24,6 +24,12 @@ public class SecurityService implements ISecurityService {
     @Value("saltForPassword")
     private String salt;
 
+    /**
+     * Encrypt data with secure method
+     * @param data the data to encrypt
+     * @return the encrypted data
+     * @throws StoreApiException
+     */
     public String encryptData(String data) throws StoreApiException {
 
         try {

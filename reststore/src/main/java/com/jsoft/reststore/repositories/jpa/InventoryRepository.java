@@ -13,6 +13,12 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface InventoryRepository extends CrudRepository<Inventory, Long> {
 
+    /**
+     * Find a inventory by product and shop
+     * @param product the product
+     * @param shop th shop
+     * @return the inventory
+     */
     Inventory findByProductAndShop(Product product, Shop shop);
 
 }

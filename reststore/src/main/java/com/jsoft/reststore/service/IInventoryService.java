@@ -14,5 +14,12 @@ import com.jsoft.reststore.service.impl.InventoryService;
  */
 public interface IInventoryService extends IGenericService<Inventory> {
 
+    /**
+     * Find a inventory by product and shop
+     * @param product the product
+     * @param shop th shop
+     * @return the inventory
+     * @throws StoreApiException
+     */
     Inventory findByProductAndShop(Product product, Shop shop) throws StoreApiException;
 }
