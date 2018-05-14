@@ -1,0 +1,363 @@
+{
+	"id": "ad00a563-00d9-4bb6-bbcd-b4b798f06294",
+	"name": "Store Service",
+	"description": null,
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"810d014f-600e-41b2-9463-c2e8b954f1a4",
+		"6f050636-f52b-4e7c-8626-acd1167089d1",
+		"e027cbbd-d652-41c5-996a-f4b01419920e",
+		"3d485f18-dd43-4818-a232-25d7bcded367",
+		"50a50dba-3592-4233-9286-7e4f66681461",
+		"9b050f56-2a13-452b-b4ba-f389ad250e80",
+		"edf3aba5-7b24-4e76-9ecc-16963c3b5ee3",
+		"a7fd1316-b01f-4aca-8b7c-6278ca278ff0",
+		"836165a5-c338-4e1c-a7c8-157c3a7b4e92",
+		"486f0e6d-3a21-404c-bd27-7c0c566193fc",
+		"5ffe0fc2-3370-48aa-a568-4582833a99c9"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "3d485f18-dd43-4818-a232-25d7bcded367",
+			"name": "Create Client",
+			"url": "http://localhost:8080/client/create",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"clientName\": \"John JQ\",\n\t\"document\": \"123\",\n\t\"age\": \"31\",\n\t\"email\": \"j@j.com\",\n\t\"clientUser\": \"jota\",\n\t\"password\": \"123\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "486f0e6d-3a21-404c-bd27-7c0c566193fc",
+			"name": "Delete Product",
+			"url": "http://localhost:8080/product/delete/4",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"clientName\": \"John Q\",\n\t\"document\": \"123\",\n\t\"age\": \"31\",\n\t\"email\": \"j@j.com\",\n\t\"clientUser\": \"jota\",\n\t\"password\": \"123\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "50a50dba-3592-4233-9286-7e4f66681461",
+			"name": "Login",
+			"url": "http://localhost:8080/login",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"user\": \"jota\",\n\t\"password\": \"123\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "5ffe0fc2-3370-48aa-a568-4582833a99c9",
+			"name": "Delete Shop",
+			"url": "http://localhost:8080/shop/delete/1",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"clientName\": \"John Q\",\n\t\"document\": \"123\",\n\t\"age\": \"31\",\n\t\"email\": \"j@j.com\",\n\t\"clientUser\": \"jota\",\n\t\"password\": \"123\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "6f050636-f52b-4e7c-8626-acd1167089d1",
+			"name": "Get All Products",
+			"url": "http://localhost:8080/product/",
+			"description": "test",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "810d014f-600e-41b2-9463-c2e8b954f1a4",
+			"name": "Get All clients",
+			"url": "http://localhost:8080/client",
+			"description": "test",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "836165a5-c338-4e1c-a7c8-157c3a7b4e92",
+			"name": "Delete Client",
+			"url": "http://localhost:8080/client/delete/14",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"clientName\": \"John Q\",\n\t\"document\": \"123\",\n\t\"age\": \"31\",\n\t\"email\": \"j@j.com\",\n\t\"clientUser\": \"jota\",\n\t\"password\": \"123\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "9b050f56-2a13-452b-b4ba-f389ad250e80",
+			"name": "Buy",
+			"url": "http://localhost:8080/buy",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"user\": \"jota\",\n\t\"password\": \"123\",\n\t\"shopId\": 4,\n\t\"product\": {\n\t\t\"123\": 3\n\t}\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a7fd1316-b01f-4aca-8b7c-6278ca278ff0",
+			"name": "Create Shop",
+			"url": "http://localhost:8080/shop/create",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"shopName\": \"Shop JJ\",\n\t\"address\": \"cll 123 N 10 -2\",\n\t\"schedule\": \"L-V\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e027cbbd-d652-41c5-996a-f4b01419920e",
+			"name": "Get All Shops",
+			"url": "http://localhost:8080/shop/",
+			"description": "test",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "edf3aba5-7b24-4e76-9ecc-16963c3b5ee3",
+			"name": "Create Product",
+			"url": "http://localhost:8080/product/create",
+			"description": "test",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"productName\": \"Un Producto\",\n\t\"barcode\": \"123\",\n\t\"cost\": \"3500\",\n\t\"description\": \"La descripción\"\n}",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}

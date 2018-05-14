@@ -1,3 +1,10 @@
+CREATE SEQUENCE client_seq;
+CREATE SEQUENCE product_seq;
+CREATE SEQUENCE shop_seq;
+CREATE SEQUENCE inventory_seq;
+CREATE SEQUENCE buy_seq;
+CREATE SEQUENCE invoice_seq;
+
 CREATE TABLE client (
 	client_id numeric(19) NOT NULL,
 	client_name varchar(255) NOT NULL,
@@ -38,6 +45,15 @@ CREATE TABLE inventory (
 	FOREIGN KEY (shop_id) REFERENCES shop(shop_id) ON DELETE CASCADE
 );
 
+CREATE TABLE invoice (
+    invoice_id numeric(19) NOT NULL,
+    buy_date timestamp not null default CURRENT_TIMESTAMP,
+    client_id numeric(19),
+    amount numeric(19),
+    PRIMARY KEY (invoice_id),
+    FOREIGN KEY (client_id) REFERENCES client(client_id) ON DELETE CASCADE
+);
+
 CREATE TABLE buy (
     buy_id numeric(19) NOT NULL DEFAULT nextval('buy_seq'::regclass),
     invoice_id numeric(19),
@@ -48,20 +64,4 @@ CREATE TABLE buy (
     FOREIGN KEY (inventory_id) REFERENCES inventory(inventory_id) ON DELETE CASCADE,
     FOREIGN KEY (invoice_id) REFERENCES invoice(invoice_id) ON DELETE CASCADE
 );
-
-CREATE TABLE invoice (
-    invoice_id numeric(19) NOT NULL,
-    buy_date timestamp not null default CURRENT_TIMESTAMP,
-    client_id numeric(19),
-    amount numeric(19),
-    PRIMARY KEY (invoice_id),
-    FOREIGN KEY (client_id) REFERENCES client(client_id) ON DELETE CASCADE
-);
-
-CREATE SEQUENCE client_seq;
-CREATE SEQUENCE product_seq;
-CREATE SEQUENCE shop_seq;
-CREATE SEQUENCE inventory_seq;
-CREATE SEQUENCE buy_seq;
-CREATE SEQUENCE invoice_seq;
 
