@@ -13,6 +13,12 @@ import static com.jsoft.reststore.test.ConverterHelperTest.buildProduct;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+/**
+ * Suite test class for ProductService
+ *
+ * @since 0.0.1
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ */
 public class ProductServiceTest extends AbstractMockitoTest {
 
     private static final String BARCODE = " barcode";

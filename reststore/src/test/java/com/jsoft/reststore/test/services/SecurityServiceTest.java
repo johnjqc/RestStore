@@ -10,6 +10,12 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Suite test class for SecurityService
+ *
+ * @since 0.0.1
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ */
 public class SecurityServiceTest extends AbstractMockitoTest {
 
     private static final String DATA_TO_ENCRYPT = "data";

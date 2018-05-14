@@ -3,6 +3,8 @@ package com.jsoft.reststore.model.web;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -16,12 +18,14 @@ public class ClientView implements Serializable {
 
     private Integer age;
 
+    @NotNull
     private String clientName;
 
     private String clientUser;
 
     private BigDecimal document;
 
+    @Email
     private String email;
 
     private String password;

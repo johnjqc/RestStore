@@ -7,6 +7,12 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+/**
+ * Helper to build objects for Test Class
+ *
+ * @since 0.0.
+ * @author <a href="johnquirogac@gmail.com">John Quiroga</a>
+ */
 public class ConverterHelperTest {
 
     public static final Timestamp TIME = new Timestamp(System.currentTimeMillis());
